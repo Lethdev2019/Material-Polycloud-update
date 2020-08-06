@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html style="background-color: #6121ff;">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <style>
+    @keyframes fadeout {
+        0% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+      @keyframes fadein {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* this is for mobile screens */
+            
+      @media only screen and (max-width: 600px) {
+        .mobile {
+          width: 100% !important;
+          height: 100vh !important;
+          position: static !important;
+          margin: 0px !important;
+          border-radius: 0px !important;
+          border: none;
+        }
+        .responive-button {
+          width: calc(100% - 40px) !important;
+        }
+        html{
+          overflow: hidden;
+          background-color: #fff !important;
+        }
+      }
+  </style>
+  <body>
+    <div class="mobile mdc-card mdc-card--outlined" id="container" style="position: fixed; top: calc(50% - 250px); left: calc(50% - 200px); width: 400px; height: 500px; padding: 20px; visibility: hidden;">
+      <center>
+      <img src="logo_name.webp" style="width: 100px;"></img>
+      </center>
+      <br>
+
+      <!-- login page 1 & 2-->
+      <div id="login_1" style="height: 100%;">
+        <center>
+        <a><font style="font-size: 20pt;">Welcome back</font></a>
+        <p style="color: #555;">Please enter your username to continue</p>
+        </center>
+        <div style="height: 100%;">
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--fullwidth">
+            <span class="mdc-text-field__ripple"></span>
+            <input class="mdc-text-field__input"
+                  type="text"
+                  placeholder="Username"
+                  aria-label="Username">
+            <span class="mdc-line-ripple"></span>
+          </label>
+          <br>
+          
+          <button onclick="switch_page('login_1','login_2')" class="responive-button mdc-button mdc-button--raised" style="position: absolute; right: 20px; bottom: 20px; width: 100px;">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">next</span>
+          </button>
+          <p>Don't have an account? <a style="color: #6121ff;" onclick="switch_page('login_1','signup_1')">Create one</a>.</p>
+        </div>
+      </div>
+      <div id="login_2" style="height: 100%;">
+        <center>
+        <a><font style="font-size: 20pt;">Welcome back</font></a>
+        <p style="color: #555;">Please enter your password to continue</p>
+        </center>
+        
+        <div style="height: 100%;">
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--fullwidth">
+            <span class="mdc-text-field__ripple"></span>
+            <input class="mdc-text-field__input"
+                  type="password"
+                  placeholder="Password"
+                  aria-label="Password">
+            <span class="mdc-line-ripple"></span>
+          </label>
+          <br>
+          
+          <button class="responive-button mdc-button mdc-button--raised" style="position: absolute; right: 20px; bottom: 20px; width: 100px;">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">login</span>
+          </button>
+          <button id="add-to-favorites"
+            class="mdc-icon-button"
+            aria-label="Add to favorites"
+            aria-pressed="false"
+            onclick="switch_page('login_2','login_1')"
+            style="position: absolute; left: 20px; top: 56px;">
+            <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">arrow_back</i>
+            <i class="material-icons mdc-icon-button__icon">arrow_back</i>
+          </button>
+          <p>Forgot your password? <a style="color: #6121ff;">Try another way</a>.</p>
+        </div>
+      </div>
+      
+      <!-- signup page 1 & 2-->
+      <div id="signup_1" style="height: 100%;">
+        <center>
+        <a><font style="font-size: 20pt;">Hey there</font></a>
+        <p style="color: #555;">Please enter your username to continue</p>
+        </center>
+        <div style="height: 100%;">
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--fullwidth">
+            <span class="mdc-text-field__ripple"></span>
+            <input class="mdc-text-field__input"
+                  type="text"
+                  placeholder="Username"
+                  aria-label="Username">
+            <span class="mdc-line-ripple"></span>
+          </label>
+          <br>
+          
+          <button onclick="switch_page('signup_1', 'signup_2')" class="responive-button mdc-button mdc-button--raised" style="position: absolute; right: 20px; bottom: 20px; width: 100px;">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">next</span>
+          </button>
+          <p>Got an account? <a style="color: #6121ff;" onclick="switch_page('signup_1', 'login_1')">Log in</a>.</p>
+        </div>
+      </div>
+      <div id="signup_2" style="height: 100%;">
+        <center>
+        <a><font style="font-size: 20pt;">Hey there</font></a>
+        <p style="color: #555;">Please enter your password to continue</p>
+        </center>
+        
+        <div style="height: 100%;">
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--fullwidth">
+            <span class="mdc-text-field__ripple"></span>
+            <input class="mdc-text-field__input"
+                  type="password"
+                  placeholder="Password"
+                  aria-label="Password">
+            <span class="mdc-line-ripple"></span>
+          </label>
+          <br>
+          <button id="add-to-favorites"
+            class="mdc-icon-button"
+            aria-label="Add to favorites"
+            aria-pressed="false"
+            onclick="switch_page('signup_2','signup_1')"
+            style="position: absolute; left: 20px; top: 56px;">
+            <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">arrow_back</i>
+            <i class="material-icons mdc-icon-button__icon">arrow_back</i>
+          </button>
+          <button class="responive-button mdc-button mdc-button--raised" style="position: absolute; right: 20px; bottom: 20px; width: 100px;">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">Create</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="js/login.js"></script>
+  </body>
+</html>

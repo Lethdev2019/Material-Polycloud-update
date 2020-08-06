@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html style="background-color: #6121ff;">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <style>
+
+	.spinner {
+		-webkit-animation: rotator 1.4s linear infinite;
+		animation: rotator 1.4s linear infinite;
+	}
+
+	@-webkit-keyframes rotator {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		100% {
+			-webkit-transform: rotate(270deg);
+			transform: rotate(270deg);
+		}
+	}
+
+	@keyframes rotator {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		100% {
+			-webkit-transform: rotate(270deg);
+			transform: rotate(270deg);
+		}
+	}
+
+	.path {
+		stroke-dasharray: 187;
+		stroke-dashoffset: 0;
+		-webkit-transform-origin: center;
+		transform-origin: center;
+		-webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+		animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+	}
+
+	@-webkit-keyframes colors {
+		0% {
+			stroke: #eee;
+		}
+		25% {
+			stroke: #eee;
+		}
+		50% {
+			stroke: #eee;
+		}
+		75% {
+			stroke: #eee;
+		}
+		100% {
+			stroke: #eee;
+		}
+	}
+
+	@keyframes colors {
+		0% {
+			stroke: #eee;
+		}
+		25% {
+			stroke: #eee;
+		}
+		50% {
+			stroke: #eee;
+		}
+		75% {
+			stroke: #eee;
+		}
+		100% {
+			stroke: #eee;
+		}
+	}
+
+	@-webkit-keyframes dash {
+		0% {
+			stroke-dashoffset: 187;
+		}
+		50% {
+			stroke-dashoffset: 46.75;
+			-webkit-transform: rotate(135deg);
+			transform: rotate(135deg);
+		}
+		100% {
+			stroke-dashoffset: 187;
+			-webkit-transform: rotate(450deg);
+			transform: rotate(450deg);
+		}
+	}
+
+	@keyframes dash {
+		0% {
+			stroke-dashoffset: 187;
+		}
+		50% {
+			stroke-dashoffset: 46.75;
+			-webkit-transform: rotate(135deg);
+			transform: rotate(135deg);
+		}
+		100% {
+			stroke-dashoffset: 187;
+			-webkit-transform: rotate(450deg);
+			transform: rotate(450deg);
+		}
+	}
+</style>
+  <style>
+    @keyframes fadeout {
+        0% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+      @keyframes fadein {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* this is for mobile screens */
+            
+      @media only screen and (max-width: 600px) {
+        .mobile {
+          width: 100% !important;
+          height: 100vh !important;
+          position: static !important;
+          margin: 0px !important;
+          border-radius: 0px !important;
+          border: none;
+        }
+        .responive-button {
+          width: calc(100% - 40px) !important;
+        }
+        html{
+          overflow: hidden;
+          background-color: #fff !important;
+        }
+      }
+  </style>
+  <body>
+    <div class="mobile mdc-card mdc-card--outlined" id="container" style="position: fixed; top: calc(50% - 250px); left: calc(50% - 200px); width: 400px; height: 500px; padding: 20px; visibility: hidden;">
+      <center>
+      <img src="logo_name.webp" style="width: 100px;"></img>
+      </center>
+      <br>
+      <div id='1'>
+        <center>
+          <a><font style="font-size: 20pt;">Dangerous</font></a>
+        </center>
+        <p style="color: #555;">You are about to download a potentially dangerous file. You need to make sure that you know that you can trust the file you are about to download.</p>
+        <button onclick="switch_page('1','2')" class="responive-button mdc-button mdc-button--raised" style="position: absolute; right: 20px; bottom: 20px; width: 100px;">
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label">next</span>
+        </button>
+        <button id="add-to-favorites"
+            class="mdc-icon-button"
+            aria-label="Add to favorites"
+            aria-pressed="false"
+            onclick="window.close()"
+            style="position: absolute; left: 20px; top: 56px;">
+            <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">close</i>
+            <i class="material-icons mdc-icon-button__icon">close</i>
+          </button>
+      </div>
+      <div id='2'>
+        <center>
+          <a><font style="font-size: 20pt;">Dangerous</font></a>
+        </center>
+        <p style="color: #555;">When we refer to "potentially dangerous files", we mean that they can contain <a href="https://norton.com/internetsecurity-malware-what-is-a-computer-virus.html">viruses</a>, <a href="https://www.kaspersky.co.uk/resource-center/threats/trojans">trojans</a>, <a href="https://www.malwarebytes.com/ransomware/">ransomware</a>, <a href="https://us.norton.com/internetsecurity-how-to-catch-spyware-before-it-snags-you.html">spyware</a> or even worse, <a href="https://www.vipre.com/resource/what-is-a-worm-virus/">worms</a>.</p>
+        <p style="color: #555;">All these types of malware are malicious and have the ability damage your computer to disrepair. In ransomeware like Wannacry, you may find that all your data is wiped - meaning you will usually need to reinstall or repair Windows. MacOS computers <strong>do get viruses too</strong>. Even Linux, Android and IOS. So please think about downloading any file from the internet. Think "is it necessary?" <i>and</i> "<strong>is it safe?</strong>."</p>
+        <button onclick="switch_page('2','3')" class="responive-button mdc-button mdc-button--raised" style="position: absolute; right: 20px; bottom: 20px; width: 100px;">
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label">next</span>
+        </button>
+        <button id="add-to-favorites"
+            class="mdc-icon-button"
+            aria-label="Add to favorites"
+            aria-pressed="false"
+            onclick="window.close()"
+            style="position: absolute; left: 20px; top: 56px;">
+            <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">close</i>
+            <i class="material-icons mdc-icon-button__icon">close</i>
+          </button>
+      </div>
+      <div id='3'>
+        <center>
+          <a><font style="font-size: 20pt;">Dangerous</font></a>
+        </center>
+        <p style="color: #555;">Please note that we are not liable for any damages caused as it is not our content but the uploader's.</p>
+        <p style="color: #555;">Click download to download the file or folder</p>
+        <a id="download" onclick="download_clicked()" href="#" download><button class="responive-button mdc-button mdc-button--raised" style="position: absolute; right: 20px; bottom: 20px; width: 100px;">
+          <div class="mdc-button__ripple"></div>
+          <span id="download_button" class="mdc-button__label">download</span>
+        </button></a>
+        <button id="add-to-favorites"
+            class="mdc-icon-button"
+            aria-label="Add to favorites"
+            aria-pressed="false"
+            onclick="window.close()"
+            style="position: absolute; left: 20px; top: 56px;">
+            <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">close</i>
+            <i class="material-icons mdc-icon-button__icon">close</i>
+          </button>
+      </div>
+    </div>
+    <script src="js/download.js"></script>
+  </body>
+</html>
